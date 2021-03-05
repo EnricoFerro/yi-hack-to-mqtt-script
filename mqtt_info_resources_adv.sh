@@ -48,7 +48,7 @@ if [ ! -z $MQTT_USER ];
     then HOST=$HOST' -u '$MQTT_USER' -P '$MQTT_PASSWORD;
 fi;
 
-MQTT_PREFIX=$(get_config MQTT_PREFIX)
+MQTT_PREFIX=$(cat $YI_HACK_PREFIX/etc/mqttv4.conf | grep MQTT_PREFIX= | cut -c 13-)
 TOPIC=$MQTT_PREFIX'/info/resources'
 
 # MQTT Publish
