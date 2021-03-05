@@ -26,7 +26,7 @@ MQTT_PORT=$(get_config MQTT_PORT)
 MQTT_USER=$(get_config MQTT_USER)
 MQTT_PASSWORD=$(get_config MQTT_PASSWORD)
 
-TOPIC_MOTION=$(get_config TOPIC_MOTION)
+TOPIC_MOTION=$(cat $YI_HACK_PREFIX/etc/mqttv4.conf | grep TOPIC_MOTION= | cut -c 14-)
 MOTION_START_MSG=$(get_config MOTION_START_MSG)
 MOTION_STOP_MSG=$(get_config MOTION_STOP_MSG)
 
