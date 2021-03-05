@@ -11,13 +11,14 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
 
 ## HowTo Use
 
-1. Download the files in a FAT32 formatted SD card
-2. Edit the file `homeassistant.cfg` according to your needs. Pay attention to the special chars:
+1. Remove power from the cam.
+2. Download the files in a FAT32 formatted SD card
+3. Edit the file `homeassistant.cfg` according to your needs. Pay attention to the special chars:
     * Use only the following special chars (I don't test any other special caracter ): - 
     * Don't use double quote " 
     * Space chars are allowed for `HOMEASSISTANT_NAME`, `HOMEASSISTANT_MANUFACTURER` and `HOMEASSISTANT_MODEL`
 
-3. When you open the SD card you must have the yi-hack folder with 12 files inside.
+4. When you open the SD card you must have the yi-hack folder with 12 files inside.
 ```
 / --- yi-hack --- homeassistant.cfg
               |-- mqtt_config_adv.sh
@@ -32,7 +33,8 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
               |-- readme.md
               |-- startup.sh
 ```
-4. Reboot the camera
+5. Insert the SD into the cam and power on it.
+6. Reboot the camera
 
 ## License
 
