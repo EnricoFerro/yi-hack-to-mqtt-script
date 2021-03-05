@@ -63,4 +63,4 @@ CONTENT=$CONTENT'"total_memory":"'$TOTAL_MEMORY'",'
 CONTENT=$CONTENT'"free_memory":"'$FREE_MEMORY'",'
 CONTENT=$CONTENT'"wlan_strength":"'$WLAN_STRENGTH'"'
 CONTENT=$CONTENT" }"
-$YI_HACK_PREFIX/bin/mosquitto_pub -r -h $HOST -t $TOPIC -m "$CONTENT"
+$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"

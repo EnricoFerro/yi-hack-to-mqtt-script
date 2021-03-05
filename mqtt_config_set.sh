@@ -14,6 +14,7 @@ get_config()
     grep -w $1 $YI_HACK_PREFIX/$MQTT_FILE | cut -d "=" -f2    
 } 
 
+HOSTNAME=$(hostname)
 MQTT_IP=$(get_config MQTT_IP)
 MQTT_PORT=$(get_config MQTT_PORT)
 MQTT_USER=$(get_config MQTT_USER)
@@ -33,7 +34,7 @@ TOPIC=$MQTT_PREFIX'/config/+/set'
 while :
 do    
       TOPIC=$MQTT_PREFIX'/config/+/set'
-      SUBSCRIBED=$($YI_HACK_PREFIX/bin/mosquitto_sub -v -C 1 -h $HOST -t $TOPIC);
+      SUBSCRIBED=$($YI_HACK_PREFIX/bin/mosquitto_sub -i $HOSTNAME -v -C 1 -h $HOST -t $TOPIC);
       CONF_UPPER=$(echo $SUBSCRIBED | awk '{print $1}' | awk -F / '{ print $(NF-1)}');
       CONF=$(echo $CONF_UPPER | awk '{ print tolower($0) }' );
       VAL=$(echo $SUBSCRIBED | awk '{print $2}');

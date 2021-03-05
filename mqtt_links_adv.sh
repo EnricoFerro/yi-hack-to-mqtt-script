@@ -6,13 +6,15 @@ CONF_FILE="etc/mqttv4.conf"
 CONTENT=$($YI_HACK_PREFIX/www/cgi-bin/links.sh | sed 1d | sed ':a;N;$!ba;s/\n//g')
 
 LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH 
-                                                   
+PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
+                                       
 get_config()                                                  
 {                                                             
     key=$1                                                    
     grep -w $1 $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2    
 }                                                             
 
+HOSTNAME=$(hostname)
 MQTT_IP=$(get_config MQTT_IP)
 MQTT_PORT=$(get_config MQTT_PORT)
 MQTT_USER=$(get_config MQTT_USER)
@@ -30,4 +32,4 @@ MQTT_PREFIX=$(cat $YI_HACK_PREFIX/etc/mqttv4.conf | grep MQTT_PREFIX= | cut -c 1
 TOPIC=$MQTT_PREFIX'/links'
 
 
-$YI_HACK_PREFIX/bin/mosquitto_pub -r -h $HOST -t $TOPIC -m "$CONTENT"
+$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
