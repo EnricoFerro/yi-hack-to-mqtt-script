@@ -1,12 +1,17 @@
 #!/bin/sh
 
 YI_HACK_PREFIX="/home/yi-hack"
+CONF_FILE="etc/mqttv4.conf"
 TMP_SD_YI_HACK_PREFIX="/tmp/sd/yi-hack"
 CONF_HOMEASSISTANT_FILE="homeassistant.cfg"
-CONF_FILE="etc/mqttv4.conf"
-
-LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH 
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
+LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH
+
+get_config()                                                  
+{                                                             
+    key=^$1                                                    
+    grep -w $key $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2     
+}
 
 get_homeassistant_config()                                                  
 {                                                             
@@ -14,19 +19,14 @@ get_homeassistant_config()
     grep -w $1 $TMP_SD_YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE | cut -d "=" -f2    
 }     
 
-get_config()                                                  
-{                                                             
-    key=$1                                                    
-    grep -w $1 $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2    
-}          
-
 HOSTNAME=$(hostname)
 MQTT_IP=$(get_config MQTT_IP)
 MQTT_PORT=$(get_config MQTT_PORT)
 MQTT_USER=$(get_config MQTT_USER)
 MQTT_PASSWORD=$(get_config MQTT_PASSWORD)
+MQTT_QOS=$(get_config MQTT_QOS)
 
-TOPIC_MOTION=$(cat $YI_HACK_PREFIX/etc/mqttv4.conf | grep TOPIC_MOTION= | cut -c 14-)
+TOPIC_MOTION=$(get_config TOPIC_MOTION)
 MOTION_START_MSG=$(get_config MOTION_START_MSG)
 MOTION_STOP_MSG=$(get_config MOTION_STOP_MSG)
 
@@ -46,7 +46,7 @@ if [ ! -z $MQTT_USER ];
     then HOST=$HOST' -u '$MQTT_USER' -P '$MQTT_PASSWORD;
 fi;
 
-MQTT_PREFIX=$(cat $YI_HACK_PREFIX/etc/mqttv4.conf | grep MQTT_PREFIX= | cut -c 13-)
+MQTT_PREFIX=$(get_config MQTT_PREFIX)
 
 HOMEASSISTANT_MQTT_PREFIX=$(get_homeassistant_config HOMEASSISTANT_MQTT_PREFIX) 
 NAME=$(get_homeassistant_config HOMEASSISTANT_NAME) 
@@ -159,19 +159,19 @@ $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTEN
 UNIQUE_NAME=$NAME" Movement"
 UNIQUE_ID=$IDENTIFIERS"-motion_detection"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/binary_sensor/$IDENTIFIERS/motion_detection/config
-CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"device_class":"motion","state_topic":"'$MQTT_PREFIX'/'$TOPIC_MOTION'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$MOTION_START_MSG'","payload_off":"'$MOTION_STOP_MSG'"}'
+CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "qos": "'$MQTT_QOS'", "device_class":"motion","state_topic":"'$MQTT_PREFIX'/'$TOPIC_MOTION'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$MOTION_START_MSG'","payload_off":"'$MOTION_STOP_MSG'"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
 # Human Detection
 UNIQUE_NAME=$NAME" Human Detection"
 UNIQUE_ID=$IDENTIFIERS"-ai_human_detection"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/binary_sensor/$IDENTIFIERS/ai_human_detection/config
-CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"device_class":"motion","state_topic":"'$MQTT_PREFIX'/'$TOPIC_AI_HUMAN_DETECTION'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$AI_HUMAN_DETECTION_START_MSG'","payload_off":"'$AI_HUMAN_DETECTION_STOP_MSG'"}'
+CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "qos": "'$MQTT_QOS'", "device_class":"motion","state_topic":"'$MQTT_PREFIX'/'$TOPIC_AI_HUMAN_DETECTION'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$AI_HUMAN_DETECTION_START_MSG'","payload_off":"'$AI_HUMAN_DETECTION_STOP_MSG'"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
 # Sound Detection
 UNIQUE_NAME=$NAME" Sound Detection"
 UNIQUE_ID=$IDENTIFIERS"-baby_crying"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/binary_sensor/$IDENTIFIERS/baby_crying/config
-CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"device_class":"sound","state_topic":"'$MQTT_PREFIX'/'$TOPIC_BABY_CRYING'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$BABY_CRYING_MSG'","off_delay":60}'
+CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "qos": "'$MQTT_QOS'", "device_class":"sound","state_topic":"'$MQTT_PREFIX'/'$TOPIC_BABY_CRYING'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$BABY_CRYING_MSG'","off_delay":60}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
 
 

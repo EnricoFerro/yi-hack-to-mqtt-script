@@ -4,14 +4,13 @@ YI_HACK_PREFIX="/home/yi-hack"
 CONF_FILE="etc/camera.conf"
 MQTT_FILE="etc/mqttv4.conf"
 
-
-LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH 
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
+LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH 
 
 get_config()                                                  
 {                                                             
-    key=$1                                                    
-    grep -w $1 $YI_HACK_PREFIX/$MQTT_FILE | cut -d "=" -f2    
+    key=^$1                                                    
+    grep -w $key $YI_HACK_PREFIX/$MQTT_FILE | cut -d "=" -f2    
 } 
 
 HOSTNAME=$(hostname)
@@ -28,7 +27,7 @@ if [ ! -z $MQTT_USER ];
     then HOST=$HOST' -u '$MQTT_USER' -P '$MQTT_PASSWORD;
 fi;
 
-MQTT_PREFIX=$(cat $YI_HACK_PREFIX/etc/mqttv4.conf | grep MQTT_PREFIX= | cut -c 13-)
+MQTT_PREFIX=$(get_config MQTT_PREFIX)
 TOPIC=$MQTT_PREFIX'/config/+/set'
 
 while :
@@ -38,9 +37,6 @@ do
       CONF_UPPER=$(echo $SUBSCRIBED | awk '{print $1}' | awk -F / '{ print $(NF-1)}');
       CONF=$(echo $CONF_UPPER | awk '{ print tolower($0) }' );
       VAL=$(echo $SUBSCRIBED | awk '{print $2}');
-
-#      echo $CONF;
-#      echo $VAL;
 
       sed -i "s/^\(${CONF_UPPER}\s*=\s*\).*$/\1${VAL}/" $YI_HACK_PREFIX/$CONF_FILE
       if [ "$CONF" == "switch_on" ] ; then

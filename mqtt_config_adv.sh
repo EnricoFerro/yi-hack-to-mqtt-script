@@ -4,14 +4,13 @@ YI_HACK_PREFIX="/home/yi-hack"
 CONF_FILE="etc/mqttv4.conf"
 
 CONTENT=$( QUERY_STRING="conf=camera" $YI_HACK_PREFIX/www/cgi-bin/get_configs.sh | sed 1d )
-
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
 LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH 
 
 get_config()                                                  
 {                                                             
-    key=$1                                                    
-    grep -w $1 $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2    
+    key=^$1                                                    
+    grep -w $key $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2    
 }                                                             
 
 HOSTNAME=$(hostname)
@@ -28,7 +27,7 @@ if [ ! -z $MQTT_USER ];
     then HOST=$HOST' -u '$MQTT_USER' -P '$MQTT_PASSWORD;
 fi;
 
-MQTT_PREFIX=$(cat $YI_HACK_PREFIX/etc/mqttv4.conf | grep MQTT_PREFIX= | cut -c 13-)
+MQTT_PREFIX=$(get_config MQTT_PREFIX)
 TOPIC=$MQTT_PREFIX'/config'
 
 
