@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="twelve columns">
+        <div class="row">
+            <div class="twelve columns">
+                <h3 class="no-margin inline-block" id="header">Homeassistant MQTT Discovery</h3>
+                <h6 id="loading-status" class="float-right loading-text"></h6>
+            </div>
+        </div>
+        <hr class="tiny-margin"/>
+        <h4 class="no-margin">Home Assistant</h4>
+        <hr class="tiny-margin"/>
+        <div class="row">
+            <p>
+                The discovery of MQTT devices will enable one to use MQTT devices with only minimal configuration effort on the side of Home Assistant.
+                <br/>
+                See <a href="https://www.home-assistant.io/docs/mqtt/discovery/">Home Assistant MQTT Discovery</a> for more information
+                <br/>
+            </p>
+        </div>
+        <hr class="tiny-margin"/>
+        <div class="row">
+            <div class="twelve columns configs-switch">
+                <table class="u-full-width padded-table config-table">
+                    <tbody>
+                    <tr class="row">
+                        <td>Enabled</td>
+                        <td>
+                            <label class="switch small">
+                                <input type="checkbox" id="enable-mqtt" data-key="HOMEASSISTANT_ENABLE"/>
+                                <span class="slider round"></span>
+                                <span class="switch-text"></span>
+                            </label>
+                            <span class="switch-description">
+                                Enable or disable the Home Assistant MQTT discovery service.
+                            </span>
+                        </td>
+                    </tr>-->
+                    <tr class="row">
+                        <td>Prefix topic</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="homeassistant" data-key="HOMEASSISTANT_MQTT_PREFIX"/>
+                            <span class="switch-description">
+                                Homeassistant prefix topic
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Device Name</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="YI Camera" data-key="HOMEASSISTANT_NAME"/>
+                            <span class="switch-description">
+                                Unique name description of the device
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Device Id</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="yi-cam" data-key="HOMEASSISTANT_IDENTIFIERS"/>
+                            <span class="switch-description">
+                                Unique identify of the device. It must not have spaces
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Device Manufactuer</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="YI Hack" data-key="HOMEASSISTANT_MANUFACTURER"/>
+                            <span class="switch-description">
+                                Unique manufactuer description of the device
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Model Name</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="Y" data-key="HOMEASSISTANT_MODEL"/>
+                            <span class="switch-description">
+                                Unique name description of the model device
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--<h4 class="no-margin">Advanced</h4>
+        <hr class="tiny-margin"/>
+        <div class="row">
+            <div class="twelve columns configs-switch">
+                <table class="u-full-width padded-table config-table">
+                    <tbody>
+                    <tr class="row">
+                        <td>Keepalive</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="120" data-key="MQTT_KEEPALIVE"/>
+                            <span class="switch-description">
+                                Keep alive ensures that the connection between the broker and client is still open and that the broker and the client are aware of being connected. The amount is specified is seconds.
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>QoS</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="1" data-key="MQTT_QOS"/>
+                            <span class="switch-description">
+                                The Quality of Service (QoS) level is an agreement between the sender of a message and the receiver of a message that defines the guarantee of delivery for a specific message.
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Retain for birth and will messages</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="1" data-key="MQTT_RETAIN_BIRTH_WILL"/>
+                            <span class="switch-description">
+                                A retained message is a normal MQTT message with the retained flag set to true. The broker stores the last retained message and the corresponding QoS for that topic. (1 = enabled, 0 = disabled)
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Retain for motion messages</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="1" data-key="MQTT_RETAIN_MOTION"/>
+                            <span class="switch-description">
+                                A retained message is a normal MQTT message with the retained flag set to true. The broker stores the last retained message and the corresponding QoS for that topic. (1 = enabled, 0 = disabled)
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Retain for motion image messages</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="1" data-key="MQTT_RETAIN_MOTION_IMAGE"/>
+                            <span class="switch-description">
+                                A retained message is a normal MQTT message with the retained flag set to true. The broker stores the last retained message and the corresponding QoS for that topic. (1 = enabled, 0 = disabled)
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Retain for video list messages</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="1" data-key="MQTT_RETAIN_MOTION_FILES"/>
+                            <span class="switch-description">
+                                A retained message is a normal MQTT message with the retained flag set to true. The broker stores the last retained message and the corresponding QoS for that topic. (1 = enabled, 0 = disabled)
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Retain for AI Human Detection messages</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="1" data-key="MQTT_RETAIN_AI_HUMAN_DETECTION"/>
+                            <span class="switch-description">
+                                A retained message is a normal MQTT message with the retained flag set to true. The broker stores the last retained message and the corresponding QoS for that topic. (1 = enabled, 0 = disabled)
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td>Retain for Sound Detection messages</td>
+                        <td>
+                            <input class="u-full-width" type="text" placeholder="1" data-key="MQTT_RETAIN_SOUND_DETECTION"/>
+                            <span class="switch-description">
+                                A retained message is a normal MQTT message with the retained flag set to true. The broker stores the last retained message and the corresponding QoS for that topic. (1 = enabled, 0 = disabled)
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>-->
+        <div class="align-right">
+            <span class="strong">Any change will take effect after the reboot of the camera.</span>
+        </div>
+        <br/>
+        <div class="float-right">
+            <div class="padded-right save-text" id="save-status"></div>
+            <input class="button-primary" type="button" id="button-save" value="Save Configuration"/>
+        </div>
+    </div>
+</div>
+<script src="js/homeassistant.js"> </script>

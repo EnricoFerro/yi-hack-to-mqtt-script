@@ -3,7 +3,7 @@
 YI_HACK_PREFIX="/home/yi-hack"
 CONF_FILE="etc/mqttv4.conf"
 TMP_SD_YI_HACK_PREFIX="/tmp/sd/yi-hack"
-CONF_HOMEASSISTANT_FILE="homeassistant.cfg"
+CONF_HOMEASSISTANT_FILE="etc/homeassistant.conf"
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
 LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH
 
@@ -16,7 +16,7 @@ get_config()
 get_homeassistant_config()                                                  
 {                                                             
     key=$1                                                    
-    grep -w $1 $TMP_SD_YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE | cut -d "=" -f2    
+    grep -w $1 $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE | cut -d "=" -f2    
 }     
 
 HOSTNAME=$(hostname)
@@ -181,32 +181,27 @@ UNIQUE_ID=$IDENTIFIERS"-SWITCH_ON"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/SWITCH_ON/config
 CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:video","json_attributes_topic":"'$MQTT_PREFIX'/config","state_topic":"'$MQTT_PREFIX'/config","command_topic":"'$MQTT_PREFIX'/config/SWITCH_ON/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.SWITCH_ON }}","payload_on":"yes","payload_off":"no"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-#"availability_topic":"'$MQTT_PREFIX'/status","payload_available":"online",
 # Baby Crying
 UNIQUE_NAME=$NAME" Baby Crying"
 UNIQUE_ID=$IDENTIFIERS"-BABY_CRYING_DETECT"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/BABY_CRYING_DETECT/config
 CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:emoticon-cry-outline","json_attributes_topic":"'$MQTT_PREFIX'/config","state_topic":"'$MQTT_PREFIX'/config","command_topic":"'$MQTT_PREFIX'/config/BABY_CRYING_DETECT/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.BABY_CRYING_DETECT }}","payload_on":"yes","payload_off":"no"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-#"availability_topic":"'$MQTT_PREFIX'/status","payload_available":"online",
 # Led
 UNIQUE_NAME=$NAME" Status Led"
 UNIQUE_ID=$IDENTIFIERS"-LED"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/LED/config
 CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:led-on","json_attributes_topic":"'$MQTT_PREFIX'/config","state_topic":"'$MQTT_PREFIX'/config","command_topic":"'$MQTT_PREFIX'/config/LED/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.LED }}","payload_on":"yes","payload_off":"no"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-#"availability_topic":"'$MQTT_PREFIX'/status","payload_available":"online",
 # IR
 UNIQUE_NAME=$NAME" IR Led"
 UNIQUE_ID=$IDENTIFIERS"-IR"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/IR/config
 CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:remote","json_attributes_topic":"'$MQTT_PREFIX'/config","state_topic":"'$MQTT_PREFIX'/config","command_topic":"'$MQTT_PREFIX'/config/IR/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.IR }}","payload_on":"yes","payload_off":"no"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-#"availability_topic":"'$MQTT_PREFIX'/status","payload_available":"online",
 # Rotate
 UNIQUE_NAME=$NAME"  Rotate"
 UNIQUE_ID=$IDENTIFIERS"-ROTATE"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/ROTATE/config
 CONTENT='{"device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:monitor","json_attributes_topic":"'$MQTT_PREFIX'/config","state_topic":"'$MQTT_PREFIX'/config","command_topic":"'$MQTT_PREFIX'/config/ROTATE/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.ROTATE }}","payload_on":"yes","payload_off":"no"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-#"availability_topic":"'$MQTT_PREFIX'/status","payload_available":"online",

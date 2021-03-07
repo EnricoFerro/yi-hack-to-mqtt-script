@@ -1,6 +1,8 @@
 #!/bin/sh
 
 YI_HACK_PREFIX="/home/yi-hack"
+TMP_SD_YI_HACK_PREFIX="/tmp/sd/yi-hack"
+CONFIG_SET="script/homeassistant/mqtt_adv_config.sh"
 CONF_FILE="etc/camera.conf"
 MQTT_FILE="etc/mqttv4.conf"
 
@@ -84,6 +86,6 @@ do
               ipc_cmd -r on
           fi
       fi
-      /tmp/sd/yi-hack/mqtt_config_adv.sh                                   
+      $TMP_SD_YI_HACK_PREFIX/$CONFIG_SET                              
 done
 
