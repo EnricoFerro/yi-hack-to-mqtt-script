@@ -9,7 +9,7 @@ CONF_HOMEASSISTANT_FILE="etc/homeassistant.conf"
 $TMP_SD_YI_HACK_PREFIX/script/homeassistant/mqtt_adv_crond_hourly.sh
 $TMP_SD_YI_HACK_PREFIX/script/homeassistant/mqtt_adv_crond_tenminutes.sh
 
-if [ -f $YI_HACK_PREFIX/etc/homeassistant.conf ] ; then
+if [ ! -f $YI_HACK_PREFIX/etc/homeassistant.conf ] ; then
     cp $TMP_SD_YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE
 fi
 
