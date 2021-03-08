@@ -1,85 +1,236 @@
+<script src="js/homeassistant.js"> </script>
 <div class="row">
     <div class="twelve columns">
         <div class="row">
             <div class="twelve columns">
-                <h3 class="no-margin inline-block" id="header">Homeassistant MQTT Discovery</h3>
+                <h3 class="no-margin inline-block" id="header">Mqtt Advertise & Homeassistant MQTT Discovery</h3>
                 <h6 id="loading-status" class="float-right loading-text"></h6>
             </div>
         </div>
-        <hr class="tiny-margin"/>
-        <h4 class="no-margin">Home Assistant</h4>
-        <hr class="tiny-margin"/>
+        <hr class="tiny-margin" />
+        <h4 class="no-margin">MQTT Information Advertise</h4>
+        <hr class="tiny-margin" />
         <div class="row">
             <p>
-                The discovery of MQTT devices will enable one to use MQTT devices with only minimal configuration effort on the side of Home Assistant.
-                <br/>
-                See <a href="https://www.home-assistant.io/docs/mqtt/discovery/">Home Assistant MQTT Discovery</a> for more information
-                <br/>
+                Information Advertise contain global information that should not change frequently like:
+                <br />
+                Hostname, Firmware Version, Base Version, Model Suffix, Serial Number, Address, Netmask, Gateway, MAC Address, Wifi ESSID.                
+                <br />
             </p>
         </div>
-        <hr class="tiny-margin"/>
         <div class="row">
             <div class="twelve columns configs-switch">
                 <table class="u-full-width padded-table config-table">
                     <tbody>
-                    <tr class="row">
-                        <td>Enabled</td>
-                        <td>
-                            <label class="switch small">
-                                <input type="checkbox" id="enable-mqtt" data-key="HOMEASSISTANT_ENABLE"/>
-                                <span class="slider round"></span>
-                                <span class="switch-text"></span>
-                            </label>
-                            <span class="switch-description">
-                                Enable or disable the Home Assistant MQTT discovery service.
-                            </span>
-                        </td>
-                    </tr>-->
-                    <tr class="row">
-                        <td>Prefix topic</td>
-                        <td>
-                            <input class="u-full-width" type="text" placeholder="homeassistant" data-key="HOMEASSISTANT_MQTT_PREFIX"/>
-                            <span class="switch-description">
-                                Homeassistant prefix topic
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>Device Name</td>
-                        <td>
-                            <input class="u-full-width" type="text" placeholder="YI Camera" data-key="HOMEASSISTANT_NAME"/>
-                            <span class="switch-description">
-                                Unique name description of the device
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>Device Id</td>
-                        <td>
-                            <input class="u-full-width" type="text" placeholder="yi-cam" data-key="HOMEASSISTANT_IDENTIFIERS"/>
-                            <span class="switch-description">
-                                Unique identify of the device. It must not have spaces
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>Device Manufactuer</td>
-                        <td>
-                            <input class="u-full-width" type="text" placeholder="YI Hack" data-key="HOMEASSISTANT_MANUFACTURER"/>
-                            <span class="switch-description">
-                                Unique manufactuer description of the device
-                            </span>
-                        </td>
-                    </tr>
-                    <tr class="row">
-                        <td>Model Name</td>
-                        <td>
-                            <input class="u-full-width" type="text" placeholder="Y" data-key="HOMEASSISTANT_MODEL"/>
-                            <span class="switch-description">
-                                Unique name description of the model device
-                            </span>
-                        </td>
-                    </tr>
+                        <tr class="row">
+                            <td>Enabled</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_ENABLE" data-key="MQTT_ADV_INFO_GLOBAL_ENABLE" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Global Information Advertise.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Start on Boot</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_BOOT" data-key="MQTT_ADV_INFO_GLOBAL_BOOT" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Global Information Advertise to start onboot.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Periodic Start</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_CRON" data-key="MQTT_ADV_INFO_GLOBAL_CRON" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Global Information Advertise to periodic
+                                    start.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Crontab</td>
+                            <td>
+                                <span class="switch-description"
+                                    style="font-family:'Lucida Console', Courier, monospace; font-size:12px;">
+                                    # +------------ Minute (range: 0-59)<br />
+                                    # | +---------- Hour (range: 0-23)<br />
+                                    # | | +-------- Day of the Month (range: 1-31)<br />
+                                    # | | | +------ Month of the Year (range: 1-12)<br />
+                                    # | | | | +---- Day of the Week (range: 0-6, sunday to saturday)<br />
+                                    # | | | | |<br />
+                                    # * * * * *
+                                </span>
+                                <input class="u-full-width" type="text" placeholder="0 * * * *"
+                                    data-key="MQTT_ADV_INFO_GLOBAL_CRONTAB" id="MQTT_ADV_INFO_GLOBAL_CRONTAB" />
+                                <span class="switch-description">
+                                    Insert here your scheduled process using crontab syntax.
+                                    <br />
+                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
+                                    : - _
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Suffix topic</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="info/global" data-key="MQTT_ADV_INFO_GLOBAL_TOPIC" />
+                                <span class="switch-description">
+                                    MQTT Global Information Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4 class="no-margin">Home Assistant</h4>
+        <hr class="tiny-margin" />
+        <div class="row">
+            <p>
+                The discovery of MQTT devices will enable one to use MQTT devices with only minimal configuration effort
+                on the side of Home Assistant.
+                <br />
+                See <a href="https://www.home-assistant.io/docs/mqtt/discovery/">Home Assistant MQTT Discovery</a> for
+                more information
+                <br />
+            </p>
+        </div>
+        <hr class="tiny-margin" />
+        <div class="row">
+            <div class="twelve columns configs-switch">
+                <table class="u-full-width padded-table config-table">
+                    <tbody>
+                        <tr class="row">
+                            <td>Enabled</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="enable-homeassistant" data-key="HOMEASSISTANT_ENABLE" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the Home Assistant MQTT discovery service.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Start on Boot</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="enable-homeassistant-boot"
+                                        data-key="HOMEASSISTANT_BOOT" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the Home Assistant MQTT discovery advertise service to start on
+                                    boot.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Periodic Start</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="enable-homeassistant-cron"
+                                        data-key="HOMEASSISTANT_CRON" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the Home Assistant MQTT discovery advertise service to periodic
+                                    start.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Crontab</td>
+                            <td>
+                                <span class="switch-description"
+                                    style="font-family:'Lucida Console', Courier, monospace; font-size:12px;">
+                                    # +------------ Minute (range: 0-59)<br />
+                                    # | +---------- Hour (range: 0-23)<br />
+                                    # | | +-------- Day of the Month (range: 1-31)<br />
+                                    # | | | +------ Month of the Year (range: 1-12)<br />
+                                    # | | | | +---- Day of the Week (range: 0-6, sunday to saturday)<br />
+                                    # | | | | |<br />
+                                    # * * * * *
+                                </span>
+                                <input class="u-full-width" type="text" placeholder="0 * * * *"
+                                    data-key="HOMEASSISTANT_CRONTAB" id="HOMEASSISTANT_CRONTAB" />
+                                <span class="switch-description">
+                                    Insert here your scheduled process using crontab syntax.
+                                    <br />
+                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
+                                    : - _
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Prefix topic</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="homeassistant"
+                                    data-key="HOMEASSISTANT_MQTT_PREFIX" />
+                                <span class="switch-description">
+                                    Homeassistant prefix topic
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Device Name</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="YI Camera"
+                                    data-key="HOMEASSISTANT_NAME" />
+                                <span class="switch-description">
+                                    Unique name description of the device
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Device Id</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="yi-cam"
+                                    data-key="HOMEASSISTANT_IDENTIFIERS" />
+                                <span class="switch-description">
+                                    Unique identify of the device. It must not have spaces
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Device Manufactuer</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="YI Hack"
+                                    data-key="HOMEASSISTANT_MANUFACTURER" />
+                                <span class="switch-description">
+                                    Unique manufactuer description of the device
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Model Name</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="Y"
+                                    data-key="HOMEASSISTANT_MODEL" />
+                                <span class="switch-description">
+                                    Unique name description of the model device
+                                </span>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -169,11 +320,10 @@
         <div class="align-right">
             <span class="strong">Any change will take effect after the reboot of the camera.</span>
         </div>
-        <br/>
+        <br />
         <div class="float-right">
             <div class="padded-right save-text" id="save-status"></div>
-            <input class="button-primary" type="button" id="button-save" value="Save Configuration"/>
+            <input class="button-primary" type="button" id="button-save" value="Save Configuration" />
         </div>
     </div>
 </div>
-<script src="js/homeassistant.js"> </script>

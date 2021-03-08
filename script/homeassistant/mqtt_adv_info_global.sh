@@ -2,16 +2,20 @@
 
 YI_HACK_PREFIX="/home/yi-hack"
 CONF_FILE="etc/mqttv4.conf"
-
+CONF_HOMEASSISTANT_FILE="etc/homeassistant.conf"
 
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
 LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH
 
-get_config()                                                  
-{                                                             
-    key=^$1                                                    
-    grep -w $key $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2    
-} 
+get_config() {
+    key=^$1
+    grep -w $key $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2
+}
+
+get_homeassistant_config() {
+    key=$1
+    grep -w $1 $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE | cut -d "=" -f2
+}
 
 HOSTNAME=$(hostname)
 FW_VERSION=$(cat $YI_HACK_PREFIX/version)
@@ -26,8 +30,7 @@ WLAN_ESSID=$(iwconfig wlan0 | grep ESSID | cut -d\" -f2)
 
 # MQTT configuration
 
-LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH 
-
+LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH
 
 MQTT_IP=$(get_config MQTT_IP)
 MQTT_PORT=$(get_config MQTT_PORT)
@@ -35,15 +38,16 @@ MQTT_USER=$(get_config MQTT_USER)
 MQTT_PASSWORD=$(get_config MQTT_PASSWORD)
 
 HOST=$MQTT_IP
-if [ ! -z $MQTT_PORT ]; 
-    then HOST=$HOST' -p '$MQTT_PORT;
-fi;
-if [ ! -z $MQTT_USER ]; 
-    then HOST=$HOST' -u '$MQTT_USER' -P '$MQTT_PASSWORD;
-fi;
+if [ ! -z $MQTT_PORT ]; then
+    HOST=$HOST' -p '$MQTT_PORT
+fi
+if [ ! -z $MQTT_USER ]; then
+    HOST=$HOST' -u '$MQTT_USER' -P '$MQTT_PASSWORD
+fi
 
 MQTT_PREFIX=$(get_config MQTT_PREFIX)
-TOPIC=$MQTT_PREFIX'/info/global'
+MQTT_ADV_INFO_GLOBAL_TOPIC=$(get_homeassistant_config MQTT_ADV_INFO_GLOBAL_TOPIC)
+TOPIC=$MQTT_PREFIX/$MQTT_ADV_INFO_GLOBAL_TOPIC
 
 # MQTT Publish
 CONTENT="{ "

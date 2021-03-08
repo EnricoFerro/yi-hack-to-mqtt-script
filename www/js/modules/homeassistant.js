@@ -21,18 +21,24 @@ APP.homeassistant = (function ($) {
             type: "GET",
             url: 'cgi-bin/get_configs.sh?conf=homeassistant',
             dataType: "json",
-            success: function(response) {
+            success: function (response) {
                 loadingStatusElem.fadeOut(500);
 
                 $.each(response, function (key, state) {
-                    $('input[type="text"][data-key="' + key +'"]').prop('value', state);
+                    if (key == "HOMEASSISTANT_BOOT" || key == "HOMEASSISTANT_CRON" || key == "HOMEASSISTANT_ENABLE" || 
+                        key == "MQTT_ADV_INFO_GLOBAL_ENABLE" || key == "MQTT_ADV_INFO_GLOBAL_BOOT" || key == "MQTT_ADV_INFO_GLOBAL_CRON") {
+                        $('input[type="checkbox"][data-key="' + key + '"]').prop('checked', state === 'yes');
+
+                    } else {
+                        $('input[type="text"][data-key="' + key + '"]').prop('value', state);
+                    }
                 });
             },
-            error: function(response) {
+            error: function (response) {
                 console.log('error', response);
             }
         });
-  
+
     }
 
     function saveConfigs() {
@@ -51,15 +57,19 @@ APP.homeassistant = (function ($) {
             configs[$(this).attr('data-key')] = $(this).prop('value');
         });
 
+        $('.configs-switch input[type="checkbox"]').each(function () {
+            configs[$(this).attr('data-key')] = $(this).prop('checked') ? 'yes' : 'no';
+        });
+
         $.ajax({
             type: "POST",
             url: 'cgi-bin/set_configs.sh?conf=homeassistant',
             data: JSON.stringify(configs),
             dataType: "json",
-            success: function(response) {
+            success: function (response) {
                 saveStatusElem.text("Saved");
             },
-            error: function(response) {
+            error: function (response) {
                 saveStatusElem.text("Error while saving");
                 console.log('error', response);
             }
