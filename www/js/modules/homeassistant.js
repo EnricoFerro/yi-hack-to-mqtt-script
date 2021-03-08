@@ -26,7 +26,10 @@ APP.homeassistant = (function ($) {
 
                 $.each(response, function (key, state) {
                     if (key == "HOMEASSISTANT_BOOT" || key == "HOMEASSISTANT_CRON" || key == "HOMEASSISTANT_ENABLE" || 
-                        key == "MQTT_ADV_INFO_GLOBAL_ENABLE" || key == "MQTT_ADV_INFO_GLOBAL_BOOT" || key == "MQTT_ADV_INFO_GLOBAL_CRON") {
+                        key == "MQTT_ADV_INFO_GLOBAL_ENABLE" || key == "MQTT_ADV_INFO_GLOBAL_BOOT" || key == "MQTT_ADV_INFO_GLOBAL_CRON" || 
+                        key == "MQTT_ADV_LINK_ENABLE" || key == "MQTT_ADV_LINK_BOOT" || key == "MQTT_ADV_LINK_CRON" ||
+                        key == "MQTT_ADV_CAMERA_SETTING_ENABLE" || key == "MQTT_ADV_CAMERA_SETTING_BOOT" || key == "MQTT_ADV_CAMERA_SETTING_CRON" ||
+                        key == "MQTT_ADV_TELEMETRY_ENABLE" || key == "MQTT_ADV_TELEMETRY_BOOT" || key == "MQTT_ADV_TELEMETRY_CRON") {
                         $('input[type="checkbox"][data-key="' + key + '"]').prop('checked', state === 'yes');
 
                     } else {

@@ -25,7 +25,6 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
                       |- homeassistant.conf
               |-- script -
                          |- homeassistant - 
-                                          |-- mqtt_adv_crond_hourly.sh
                                           |-- mqtt_adv_crond_teminutes.sh
                                           |-- mqtt_adv_homeassistant.0.1.8.sh
                                           |-- mqtt_adv_homeassistant.0.1.9.sh
@@ -33,7 +32,7 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
                                           |-- mqtt_adv_homeassistant.0.2.1.sh
                                           |-- mqtt_adv_homeassistant.0.2.3.sh
                                           |-- mqtt_adv_info_global.sh
-                                          |-- mqtt_adv_info_resources.sh
+                                          |-- mqtt_adv_telemetry.sh
                                           |-- mqtt_adv_links.sh
                                           |-- mqtt_adv_config.sh
                                           |-- mqtt_set_config.0.2.3.sh
@@ -56,6 +55,14 @@ It is possible to modify the configuration by the page:
 ```
 http://<YOU_CAM_IP>/index.html?page=homeassistant
 ```
+
+## Remove 
+
+1. Delete all content in `/tmp/sd/yi-hack`
+2. Delete `/home/yi-hack/etc/homeassistant.conf`
+3. Delete `/home/yi-hack/www/pages/homeassistant.html`
+4. Delete `/home/yi-hack/www/js/homeassistant.js`
+
 
 ## License
 

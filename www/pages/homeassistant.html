@@ -88,9 +88,279 @@
                         <tr class="row">
                             <td>Suffix topic</td>
                             <td>
-                                <input class="u-full-width" type="text" placeholder="info/global" data-key="MQTT_ADV_INFO_GLOBAL_TOPIC" />
+                                <input class="u-full-width" type="text" placeholder="info_global" data-key="MQTT_ADV_INFO_GLOBAL_TOPIC" />
                                 <span class="switch-description">
                                     MQTT Global Information Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4 class="no-margin">MQTT Link Advertise</h4>
+        <hr class="tiny-margin" />
+        <div class="row">
+            <p>
+                Link Advertise contain links:
+                <br />
+                High res stream, Low res stream, Only audio stream, High res snapshot, Low res snapshot.                
+                <br />
+            </p>
+        </div>
+        <div class="row">
+            <div class="twelve columns configs-switch">
+                <table class="u-full-width padded-table config-table">
+                    <tbody>
+                        <tr class="row">
+                            <td>Enabled</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_LINK_ENABLE" data-key="MQTT_ADV_LINK_ENABLE" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Links Advertise.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Start on Boot</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_LINK_BOOT" data-key="MQTT_ADV_LINK_BOOT" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Links Advertise to start onboot.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Periodic Start</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_LINK_CRON" data-key="MQTT_ADV_LINK_CRON" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Links Advertise to periodic
+                                    start.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Crontab</td>
+                            <td>
+                                <span class="switch-description"
+                                    style="font-family:'Lucida Console', Courier, monospace; font-size:12px;">
+                                    # +------------ Minute (range: 0-59)<br />
+                                    # | +---------- Hour (range: 0-23)<br />
+                                    # | | +-------- Day of the Month (range: 1-31)<br />
+                                    # | | | +------ Month of the Year (range: 1-12)<br />
+                                    # | | | | +---- Day of the Week (range: 0-6, sunday to saturday)<br />
+                                    # | | | | |<br />
+                                    # * * * * *
+                                </span>
+                                <input class="u-full-width" type="text" placeholder="0 * * * *"
+                                    data-key="MQTT_ADV_LINK_CRONTAB" id="MQTT_ADV_LINK_CRONTAB" />
+                                <span class="switch-description">
+                                    Insert here your scheduled process using crontab syntax.
+                                    <br />
+                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
+                                    : - _
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Suffix topic</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="links" data-key="MQTT_ADV_LINK_TOPIC" />
+                                <span class="switch-description">
+                                    MQTT Links Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4 class="no-margin">MQTT Camera Settings Advertise</h4>
+        <hr class="tiny-margin" />
+        <div class="row">
+            <p>
+                Camera Settings Advertise contain the information of Camera Settings page:
+                <br />
+                Switch on/off camera, Sound Detection, Status Led, IR Led, Rotate.                
+                <br />
+            </p>
+        </div>
+        <div class="row">
+            <div class="twelve columns configs-switch">
+                <table class="u-full-width padded-table config-table">
+                    <tbody>
+                        <tr class="row">
+                            <td>Enabled</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_ENABLE" data-key="MQTT_ADV_CAMERA_SETTING_ENABLE" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Camera Settings Advertise.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Start on Boot</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_BOOT" data-key="MQTT_ADV_CAMERA_SETTING_BOOT" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Camera Settings Advertise to start onboot.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Periodic Start</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_CRON" data-key="MQTT_ADV_CAMERA_SETTING_CRON" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Camera Settings Advertise to periodic
+                                    start.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Crontab</td>
+                            <td>
+                                <span class="switch-description"
+                                    style="font-family:'Lucida Console', Courier, monospace; font-size:12px;">
+                                    # +------------ Minute (range: 0-59)<br />
+                                    # | +---------- Hour (range: 0-23)<br />
+                                    # | | +-------- Day of the Month (range: 1-31)<br />
+                                    # | | | +------ Month of the Year (range: 1-12)<br />
+                                    # | | | | +---- Day of the Week (range: 0-6, sunday to saturday)<br />
+                                    # | | | | |<br />
+                                    # * * * * *
+                                </span>
+                                <input class="u-full-width" type="text" placeholder="0 * * * *"
+                                    data-key="MQTT_ADV_CAMERA_SETTING_CRONTAB" id="MQTT_ADV_CAMERA_SETTING_CRONTAB" />
+                                <span class="switch-description">
+                                    Insert here your scheduled process using crontab syntax.
+                                    <br />
+                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
+                                    : - _
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Suffix topic</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="camera_setting" data-key="MQTT_ADV_CAMERA_SETTING_TOPIC" />
+                                <span class="switch-description">
+                                    MQTT Camera Settings Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4 class="no-margin">MQTT Telemetry Advertise</h4>
+        <hr class="tiny-margin" />
+        <div class="row">
+            <p>
+                Telemetry Advertise contain the information of Telemetry page that change frequently:
+                <br />
+                Wlan Strenght, Uptime, FreeSD, Free Memory, Total Memory, Load Average.                
+                <br />
+            </p>
+        </div>
+        <div class="row">
+            <div class="twelve columns configs-switch">
+                <table class="u-full-width padded-table config-table">
+                    <tbody>
+                        <tr class="row">
+                            <td>Enabled</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_ENABLE" data-key="MQTT_ADV_TELEMETRY_ENABLE" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Telemetry Advertise.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Start on Boot</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_BOOT" data-key="MQTT_ADV_TELEMETRY_BOOT" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Telemetry Advertise to start onboot.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Periodic Start</td>
+                            <td>
+                                <label class="switch small">
+                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_CRON" data-key="MQTT_ADV_TELEMETRY_CRON" />
+                                    <span class="slider round"></span>
+                                    <span class="switch-text"></span>
+                                </label>
+                                <span class="switch-description">
+                                    Enable or disable the MQTT Telemetry Advertise to periodic
+                                    start.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Crontab</td>
+                            <td>
+                                <span class="switch-description"
+                                    style="font-family:'Lucida Console', Courier, monospace; font-size:12px;">
+                                    # +------------ Minute (range: 0-59)<br />
+                                    # | +---------- Hour (range: 0-23)<br />
+                                    # | | +-------- Day of the Month (range: 1-31)<br />
+                                    # | | | +------ Month of the Year (range: 1-12)<br />
+                                    # | | | | +---- Day of the Week (range: 0-6, sunday to saturday)<br />
+                                    # | | | | |<br />
+                                    # * * * * *
+                                </span>
+                                <input class="u-full-width" type="text" placeholder="0 * * * *"
+                                    data-key="MQTT_ADV_TELEMETRY_CRONTAB" id="MQTT_ADV_TELEMETRY_CRONTAB" />
+                                <span class="switch-description">
+                                    Insert here your scheduled process using crontab syntax.
+                                    <br />
+                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
+                                    : - _
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Suffix topic</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="telemetry" data-key="MQTT_ADV_TELEMETRY_TOPIC" />
+                                <span class="switch-description">
+                                    MQTT Telemetry Advertise suffix topic
                                 </span>
                             </td>
                         </tr>
@@ -171,7 +441,7 @@
                                     # | | | | |<br />
                                     # * * * * *
                                 </span>
-                                <input class="u-full-width" type="text" placeholder="0 * * * *"
+                                <input class="u-full-width" type="text" placeholder="*/10 * * * *"
                                     data-key="HOMEASSISTANT_CRONTAB" id="HOMEASSISTANT_CRONTAB" />
                                 <span class="switch-description">
                                     Insert here your scheduled process using crontab syntax.

@@ -2,6 +2,7 @@
 
 YI_HACK_PREFIX="/home/yi-hack"
 CONF_FILE="etc/mqttv4.conf"
+CONF_HOMEASSISTANT_FILE="etc/homeassistant.conf"
 
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
 LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH
@@ -9,6 +10,11 @@ LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH
 get_config() {
     key=^$1
     grep -w $key $YI_HACK_PREFIX/$CONF_FILE | cut -d "=" -f2
+}
+
+get_homeassistant_config() {
+    key=$1
+    grep -w $1 $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE | cut -d "=" -f2
 }
 
 HOSTNAME=$(hostname)
@@ -37,7 +43,8 @@ if [ ! -z $MQTT_USER ]; then
 fi
 
 MQTT_PREFIX=$(get_config MQTT_PREFIX)
-TOPIC=$MQTT_PREFIX'/info/resources'
+MQTT_ADV_TELEMETRY_TOPIC=$(get_homeassistant_config MQTT_ADV_TELEMETRY_TOPIC)
+TOPIC=$MQTT_PREFIX/$MQTT_ADV_TELEMETRY_TOPIC
 
 # MQTT Publish
 CONTENT="{ "
