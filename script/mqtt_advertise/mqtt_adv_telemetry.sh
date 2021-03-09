@@ -2,7 +2,7 @@
 
 YI_HACK_PREFIX="/home/yi-hack"
 CONF_FILE="etc/mqttv4.conf"
-CONF_HOMEASSISTANT_FILE="etc/homeassistant.conf"
+CONF_HOMEASSISTANT_FILE="etc/mqtt_advertise.conf"
 
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
 LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH

@@ -2,8 +2,8 @@
 
 YI_HACK_PREFIX="/home/yi-hack"
 CONF_FILE="etc/mqttv4.conf"
-TMP_SD_YI_HACK_PREFIX="/tmp/sd/yi-hack"
-CONF_HOMEASSISTANT_FILE="etc/homeassistant.conf"
+
+CONF_HOMEASSISTANT_FILE="etc/mqtt_advertise.conf"
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
 LD_LIBRARY_PATH=$YI_HACK_PREFIX/lib:$LD_LIBRARY_PATH
 
@@ -38,11 +38,6 @@ AI_HUMAN_DETECTION_STOP_MSG=$(get_config AI_HUMAN_DETECTION_STOP_MSG)
 
 TOPIC_BABY_CRYING=$(get_config TOPIC_BABY_CRYING)
 BABY_CRYING_MSG=$(get_config BABY_CRYING_MSG)
-
-TOPIC_SOUND_DETECTION=$(get_config TOPIC_SOUND_DETECTION)
-SOUND_DETECTION_MSG=$(get_config SOUND_DETECTION_MSG)
-
-TOPIC_MOTION_IMAGE=$(get_config TOPIC_MOTION_IMAGE)
 
 HOST=$MQTT_IP
 if [ ! -z $MQTT_PORT ]; then
@@ -175,18 +170,9 @@ CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_ava
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
 # Sound Detection
 UNIQUE_NAME=$NAME" Sound Detection"
-UNIQUE_ID=$IDENTIFIERS"-sound_detection"
-TOPIC=$HOMEASSISTANT_MQTT_PREFIX/binary_sensor/$IDENTIFIERS/sound_detection/config
-CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "qos": "'$MQTT_QOS'", "device_class":"sound","state_topic":"'$MQTT_PREFIX'/'$TOPIC_SOUND_DETECTION'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$SOUND_DETECTION_MSG'","off_delay":60}'
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-# try to remove baby_crying topic
+UNIQUE_ID=$IDENTIFIERS"-baby_crying"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/binary_sensor/$IDENTIFIERS/baby_crying/config
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -h $HOST -t $TOPIC -m ""
-# Motion Detection Image
-UNIQUE_NAME=$NAME" Motion Detection Image"
-UNIQUE_ID=$IDENTIFIERS"-motion_detection_image"
-TOPIC=$HOMEASSISTANT_MQTT_PREFIX/camera/$IDENTIFIERS/motion_detection_image/config
-CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "qos": "'$MQTT_QOS'", "topic":"'$MQTT_PREFIX'/'$TOPIC_MOTION_IMAGE'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'"}'
+CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "qos": "'$MQTT_QOS'", "device_class":"sound","state_topic":"'$MQTT_PREFIX'/'$TOPIC_BABY_CRYING'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","payload_on":"'$BABY_CRYING_MSG'","off_delay":60}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
 
 # Switch On
@@ -195,15 +181,12 @@ UNIQUE_ID=$IDENTIFIERS"-SWITCH_ON"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/SWITCH_ON/config
 CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:video","json_attributes_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","state_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","command_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'/SWITCH_ON/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.SWITCH_ON }}","payload_on":"yes","payload_off":"no"}'
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-# Sound Detection
-UNIQUE_NAME=$NAME" Sound Detection"
-UNIQUE_ID=$IDENTIFIERS"-SOUND_DETECTION"
-TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/SOUND_DETECTION/config
-CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:music-note","json_attributes_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","state_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","command_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'/SOUND_DETECTION/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.SOUND_DETECTION }}","payload_on":"yes","payload_off":"no"}'
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
-# try to remove baby_crying topic
+# Baby Crying
+UNIQUE_NAME=$NAME" Baby Crying"
+UNIQUE_ID=$IDENTIFIERS"-BABY_CRYING_DETECT"
 TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/BABY_CRYING_DETECT/config
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -h $HOST -t $TOPIC -m ""
+CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"},"icon":"mdi:emoticon-cry-outline","json_attributes_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","state_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","command_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'/BABY_CRYING_DETECT/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.BABY_CRYING_DETECT }}","payload_on":"yes","payload_off":"no"}'
+$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
 # Led
 UNIQUE_NAME=$NAME" Status Led"
 UNIQUE_ID=$IDENTIFIERS"-LED"

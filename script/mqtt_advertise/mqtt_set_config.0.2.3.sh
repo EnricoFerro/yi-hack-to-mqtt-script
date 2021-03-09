@@ -1,10 +1,10 @@
 #!/bin/sh
 
 YI_HACK_PREFIX="/home/yi-hack"
-TMP_SD_YI_HACK_PREFIX="/tmp/sd/yi-hack"
-CONFIG_SET="script/homeassistant/mqtt_adv_config.sh"
+
+CONFIG_SET="script/mqtt_advertise/mqtt_adv_config.sh"
 CONF_FILE="etc/camera.conf"
-CONF_HOMEASSISTANT_FILE="etc/homeassistant.conf"
+CONF_HOMEASSISTANT_FILE="etc/mqtt_advertise.conf"
 MQTT_FILE="etc/mqttv4.conf"
 
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
@@ -65,7 +65,7 @@ while :; do
         else
             ipc_cmd -a on
         fi
-    elif [ "$CONF" == "baby_crying_detect" ]; then
+    elif [ "$CONF" == "sound_detection" ]; then
         if [ "$VAL" == "no" ]; then
             ipc_cmd -b off
         else
@@ -90,5 +90,5 @@ while :; do
             ipc_cmd -r on
         fi
     fi
-    $TMP_SD_YI_HACK_PREFIX/$CONFIG_SET
+    $YI_HACK_PREFIX/$CONFIG_SET
 done

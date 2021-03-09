@@ -13,7 +13,7 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
 
 1. Remove power from the cam.
 2. Download the files in a FAT32 formatted SD card
-3. Edit the file `etc/homeassistant.conf` according to your needs. Pay attention to the special chars:
+3. Edit the file `etc/mqtt_advertise.conf` according to your needs. Pay attention to the special chars:
     * Use only the following special chars (I don't test any other special caracter ): - 
     * Don't use double quote " 
     * Space chars are allowed for `HOMEASSISTANT_NAME`, `HOMEASSISTANT_MANUFACTURER` and `HOMEASSISTANT_MODEL`
@@ -22,9 +22,9 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
 ```
 / --- yi-hack -
               |-- etc -
-                      |- homeassistant.conf
+                      |- mqtt_advertise.conf
               |-- script -
-                         |- homeassistant - 
+                         |- mqtt_advertise - 
                                           |-- mqtt_adv_crond_teminutes.sh
                                           |-- mqtt_adv_homeassistant.0.1.8.sh
                                           |-- mqtt_adv_homeassistant.0.1.9.sh
@@ -39,10 +39,10 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
                                           |-- mqtt_set_config.sh
               |-- www - 
                       |- pages -
-                               |- homeassistant.html
+                               |- mqtt_adv.html
                       |- js - 
                             |- modules -
-                                       |- homeassistant.js 
+                                       |- mqtt_adv.js 
               |-- readme.md
               |-- startup.sh
 ```
@@ -53,15 +53,15 @@ THIS IS INTENDED FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.
 
 It is possible to modify the configuration by the page:
 ```
-http://<YOU_CAM_IP>/index.html?page=homeassistant
+http://<YOU_CAM_IP>/index.html?page=mqtt_adv
 ```
 
 ## Remove 
 
 1. Delete all content in `/tmp/sd/yi-hack`
-2. Delete `/home/yi-hack/etc/homeassistant.conf`
-3. Delete `/home/yi-hack/www/pages/homeassistant.html`
-4. Delete `/home/yi-hack/www/js/homeassistant.js`
+2. Delete `/home/yi-hack/etc/mqtt_advertise.conf`
+3. Delete `/home/yi-hack/www/pages/mqtt_adv.html`
+4. Delete `/home/yi-hack/www/js/mqtt_adv.js`
 
 
 ## License

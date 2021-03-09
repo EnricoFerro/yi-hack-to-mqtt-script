@@ -1,6 +1,6 @@
 var APP = APP || {};
 
-APP.homeassistant = (function ($) {
+APP.mqtt_adv = (function ($) {
 
     function init() {
         registerEventHandler();
@@ -19,7 +19,7 @@ APP.homeassistant = (function ($) {
 
         $.ajax({
             type: "GET",
-            url: 'cgi-bin/get_configs.sh?conf=homeassistant',
+            url: 'cgi-bin/get_configs.sh?conf=mqtt_advertise',
             dataType: "json",
             success: function (response) {
                 loadingStatusElem.fadeOut(500);
@@ -66,7 +66,7 @@ APP.homeassistant = (function ($) {
 
         $.ajax({
             type: "POST",
-            url: 'cgi-bin/set_configs.sh?conf=homeassistant',
+            url: 'cgi-bin/set_configs.sh?conf=mqtt_advertise',
             data: JSON.stringify(configs),
             dataType: "json",
             success: function (response) {
