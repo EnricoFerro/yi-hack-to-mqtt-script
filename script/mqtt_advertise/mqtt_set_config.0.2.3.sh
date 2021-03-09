@@ -4,7 +4,7 @@ YI_HACK_PREFIX="/home/yi-hack"
 
 CONFIG_SET="script/mqtt_advertise/mqtt_adv_config.sh"
 CONF_FILE="etc/camera.conf"
-CONF_HOMEASSISTANT_FILE="etc/mqtt_advertise.conf"
+CONF_MQTT_ADVERTISE_FILE="etc/mqtt_advertise.conf"
 MQTT_FILE="etc/mqttv4.conf"
 
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
@@ -15,9 +15,9 @@ get_config() {
     grep -w $key $YI_HACK_PREFIX/$MQTT_FILE | cut -d "=" -f2
 }
 
-get_homeassistant_config() {
+get_mqtt_advertise_config() {
     key=$1
-    grep -w $1 $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE | cut -d "=" -f2
+    grep -w $1 $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE | cut -d "=" -f2
 }
 
 HOSTNAME=$(hostname)
@@ -35,7 +35,7 @@ if [ ! -z $MQTT_USER ]; then
 fi
 
 MQTT_PREFIX=$(get_config MQTT_PREFIX)
-MQTT_ADV_CAMERA_SETTING_TOPIC=$(get_homeassistant_config MQTT_ADV_CAMERA_SETTING_TOPIC)
+MQTT_ADV_CAMERA_SETTING_TOPIC=$(get_mqtt_advertise_config MQTT_ADV_CAMERA_SETTING_TOPIC)
 
 while :; do
     TOPIC=$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'/+/set'

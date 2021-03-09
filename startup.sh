@@ -3,41 +3,41 @@
 YI_HACK_PREFIX="/home/yi-hack"
 TMP_SD_YI_HACK_PREFIX="/tmp/sd/yi-hack"
 PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
-CONF_HOMEASSISTANT_FILE="etc/mqtt_advertise.conf"
+CONF_MQTT_ADVERTISE_FILE="etc/mqtt_advertise.conf"
 
-if [ ! -f $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE ]; then
-    cp $TMP_SD_YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE
+if [ ! -f $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE ]; then
+    cp $TMP_SD_YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE
 fi
 
 ln -sf $TMP_SD_YI_HACK_PREFIX/www/pages/mqtt_adv.html $YI_HACK_PREFIX/www/pages/mqtt_adv.html
 ln -sf $TMP_SD_YI_HACK_PREFIX/www/js/modules/mqtt_adv.js $YI_HACK_PREFIX/www/js/mqtt_adv.js
 ln -sf $TMP_SD_YI_HACK_PREFIX/script/mqtt_advertise $YI_HACK_PREFIX/script/mqtt_advertise
 
-get_homeassistant_config() {
+get_mqtt_advertise_config() {
     key=$1
-    grep -w $1 $YI_HACK_PREFIX/$CONF_HOMEASSISTANT_FILE | cut -d "=" -f2
+    grep -w $1 $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE | cut -d "=" -f2
 }
 
-MQTT_ADV_LINK_ENABLE=$(get_homeassistant_config MQTT_ADV_LINK_ENABLE)
-MQTT_ADV_LINK_BOOT=$(get_homeassistant_config MQTT_ADV_LINK_BOOT)
-MQTT_ADV_LINK_CRON=$(get_homeassistant_config MQTT_ADV_LINK_CRON)
-MQTT_ADV_LINK_CRONTAB=$(get_homeassistant_config MQTT_ADV_LINK_CRONTAB)
-MQTT_ADV_INFO_GLOBAL_ENABLE=$(get_homeassistant_config MQTT_ADV_INFO_GLOBAL_ENABLE)
-MQTT_ADV_INFO_GLOBAL_BOOT=$(get_homeassistant_config MQTT_ADV_INFO_GLOBAL_BOOT)
-MQTT_ADV_INFO_GLOBAL_CRON=$(get_homeassistant_config MQTT_ADV_INFO_GLOBAL_CRON)
-MQTT_ADV_INFO_GLOBAL_CRONTAB=$(get_homeassistant_config MQTT_ADV_INFO_GLOBAL_CRONTAB)
-MQTT_ADV_CAMERA_SETTING_ENABLE=$(get_homeassistant_config MQTT_ADV_CAMERA_SETTING_ENABLE)
-MQTT_ADV_CAMERA_SETTING_BOOT=$(get_homeassistant_config MQTT_ADV_CAMERA_SETTING_BOOT)
-MQTT_ADV_CAMERA_SETTING_CRON=$(get_homeassistant_config MQTT_ADV_CAMERA_SETTING_CRON)
-MQTT_ADV_CAMERA_SETTING_CRONTAB=$(get_homeassistant_config MQTT_ADV_CAMERA_SETTING_CRONTAB)
-MQTT_ADV_TELEMETRY_ENABLE=$(get_homeassistant_config MQTT_ADV_TELEMETRY_ENABLE)
-MQTT_ADV_TELEMETRY_BOOT=$(get_homeassistant_config MQTT_ADV_TELEMETRY_BOOT)
-MQTT_ADV_TELEMETRY_CRON=$(get_homeassistant_config MQTT_ADV_TELEMETRY_CRON)
-MQTT_ADV_TELEMETRY_CRONTAB=$(get_homeassistant_config MQTT_ADV_TELEMETRY_CRONTAB)
-HOMEASSISTANT_ENABLE=$(get_homeassistant_config HOMEASSISTANT_ENABLE)
-HOMEASSISTANT_BOOT=$(get_homeassistant_config HOMEASSISTANT_BOOT)
-HOMEASSISTANT_CRON=$(get_homeassistant_config HOMEASSISTANT_CRON)
-HOMEASSISTANT_CRONTAB=$(get_homeassistant_config HOMEASSISTANT_CRONTAB)
+MQTT_ADV_LINK_ENABLE=$(get_mqtt_advertise_config MQTT_ADV_LINK_ENABLE)
+MQTT_ADV_LINK_BOOT=$(get_mqtt_advertise_config MQTT_ADV_LINK_BOOT)
+MQTT_ADV_LINK_CRON=$(get_mqtt_advertise_config MQTT_ADV_LINK_CRON)
+MQTT_ADV_LINK_CRONTAB=$(get_mqtt_advertise_config MQTT_ADV_LINK_CRONTAB)
+MQTT_ADV_INFO_GLOBAL_ENABLE=$(get_mqtt_advertise_config MQTT_ADV_INFO_GLOBAL_ENABLE)
+MQTT_ADV_INFO_GLOBAL_BOOT=$(get_mqtt_advertise_config MQTT_ADV_INFO_GLOBAL_BOOT)
+MQTT_ADV_INFO_GLOBAL_CRON=$(get_mqtt_advertise_config MQTT_ADV_INFO_GLOBAL_CRON)
+MQTT_ADV_INFO_GLOBAL_CRONTAB=$(get_mqtt_advertise_config MQTT_ADV_INFO_GLOBAL_CRONTAB)
+MQTT_ADV_CAMERA_SETTING_ENABLE=$(get_mqtt_advertise_config MQTT_ADV_CAMERA_SETTING_ENABLE)
+MQTT_ADV_CAMERA_SETTING_BOOT=$(get_mqtt_advertise_config MQTT_ADV_CAMERA_SETTING_BOOT)
+MQTT_ADV_CAMERA_SETTING_CRON=$(get_mqtt_advertise_config MQTT_ADV_CAMERA_SETTING_CRON)
+MQTT_ADV_CAMERA_SETTING_CRONTAB=$(get_mqtt_advertise_config MQTT_ADV_CAMERA_SETTING_CRONTAB)
+MQTT_ADV_TELEMETRY_ENABLE=$(get_mqtt_advertise_config MQTT_ADV_TELEMETRY_ENABLE)
+MQTT_ADV_TELEMETRY_BOOT=$(get_mqtt_advertise_config MQTT_ADV_TELEMETRY_BOOT)
+MQTT_ADV_TELEMETRY_CRON=$(get_mqtt_advertise_config MQTT_ADV_TELEMETRY_CRON)
+MQTT_ADV_TELEMETRY_CRONTAB=$(get_mqtt_advertise_config MQTT_ADV_TELEMETRY_CRONTAB)
+HOMEASSISTANT_ENABLE=$(get_mqtt_advertise_config HOMEASSISTANT_ENABLE)
+HOMEASSISTANT_BOOT=$(get_mqtt_advertise_config HOMEASSISTANT_BOOT)
+HOMEASSISTANT_CRON=$(get_mqtt_advertise_config HOMEASSISTANT_CRON)
+HOMEASSISTANT_CRONTAB=$(get_mqtt_advertise_config HOMEASSISTANT_CRONTAB)
 
 if [ "$MQTT_ADV_LINK_ENABLE" == "yes" ]; then
     if [ "$MQTT_ADV_LINK_BOOT" == "yes" ]; then
