@@ -44,6 +44,12 @@ fi
 
 MQTT_PREFIX=$(get_config MQTT_PREFIX)
 MQTT_ADV_TELEMETRY_TOPIC=$(get_mqtt_advertise_config MQTT_ADV_TELEMETRY_TOPIC)
+MQTT_ADV_TELEMETRY_RETAIN=$(get_mqtt_advertise_config MQTT_ADV_TELEMETRY_RETAIN)
+if [ "$MQTT_ADV_TELEMETRY_RETAIN" == "1" ]; then
+    RETAIN="-r"
+else
+    RETAIN=""
+fi
 TOPIC=$MQTT_PREFIX/$MQTT_ADV_TELEMETRY_TOPIC
 
 # MQTT Publish
@@ -58,4 +64,4 @@ CONTENT=$CONTENT'"total_memory":"'$TOTAL_MEMORY'",'
 CONTENT=$CONTENT'"free_memory":"'$FREE_MEMORY'",'
 CONTENT=$CONTENT'"wlan_strength":"'$WLAN_STRENGTH'"'
 CONTENT=$CONTENT" }"
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
+$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $RETAIN -h $HOST -t $TOPIC -m "$CONTENT"

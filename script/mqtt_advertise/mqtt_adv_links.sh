@@ -34,6 +34,14 @@ fi
 
 MQTT_PREFIX=$(get_config MQTT_PREFIX)
 MQTT_ADV_LINK_TOPIC=$(get_mqtt_advertise_config MQTT_ADV_LINK_TOPIC)
+MQTT_ADV_LINK_RETAIN=$(get_mqtt_advertise_config MQTT_ADV_LINK_RETAIN)
+if [ "$MQTT_ADV_LINK_RETAIN" == "1" ]; then
+    RETAIN="-r"
+else
+    RETAIN=""
+fi
+
 TOPIC=$MQTT_PREFIX/$MQTT_ADV_LINK_TOPIC
 
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -r -h $HOST -t $TOPIC -m "$CONTENT"
+
+$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $RETAIN -h $HOST -t $TOPIC -m "$CONTENT"

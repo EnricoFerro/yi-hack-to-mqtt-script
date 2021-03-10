@@ -14,7 +14,8 @@
             <p>
                 Information Advertise contain global information that should not change frequently like:
                 <br />
-                Hostname, Firmware Version, Base Version, Model Suffix, Serial Number, Address, Netmask, Gateway, MAC Address, Wifi ESSID.                
+                Hostname, Firmware Version, Base Version, Model Suffix, Serial Number, Address, Netmask, Gateway, MAC
+                Address, Wifi ESSID.
                 <br />
             </p>
         </div>
@@ -26,7 +27,8 @@
                             <td>Enabled</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_ENABLE" data-key="MQTT_ADV_INFO_GLOBAL_ENABLE" />
+                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_ENABLE"
+                                        data-key="MQTT_ADV_INFO_GLOBAL_ENABLE" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -39,7 +41,8 @@
                             <td>Start on Boot</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_BOOT" data-key="MQTT_ADV_INFO_GLOBAL_BOOT" />
+                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_BOOT"
+                                        data-key="MQTT_ADV_INFO_GLOBAL_BOOT" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -52,7 +55,8 @@
                             <td>Periodic Start</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_CRON" data-key="MQTT_ADV_INFO_GLOBAL_CRON" />
+                                    <input type="checkbox" id="MQTT_ADV_INFO_GLOBAL_CRON"
+                                        data-key="MQTT_ADV_INFO_GLOBAL_CRON" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -79,18 +83,28 @@
                                     data-key="MQTT_ADV_INFO_GLOBAL_CRONTAB" id="MQTT_ADV_INFO_GLOBAL_CRONTAB" />
                                 <span class="switch-description">
                                     Insert here your scheduled process using crontab syntax.
-                                    <br />
-                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
-                                    : - _
                                 </span>
                             </td>
                         </tr>
                         <tr class="row">
                             <td>Suffix topic</td>
                             <td>
-                                <input class="u-full-width" type="text" placeholder="info_global" data-key="MQTT_ADV_INFO_GLOBAL_TOPIC" />
+                                <input class="u-full-width" type="text" placeholder="info_global"
+                                    data-key="MQTT_ADV_INFO_GLOBAL_TOPIC" />
                                 <span class="switch-description">
                                     MQTT Global Information Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Retain for MQTT Global Information</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="1"
+                                    data-key="MQTT_ADV_INFO_GLOBAL_RETAIN" />
+                                <span class="switch-description">
+                                    A retained message is a normal MQTT message with the retained flag set to true. The
+                                    broker stores the last retained message and the corresponding QoS for that topic. (1
+                                    = enabled, 0 = disabled)
                                 </span>
                             </td>
                         </tr>
@@ -104,7 +118,7 @@
             <p>
                 Link Advertise contain links:
                 <br />
-                High res stream, Low res stream, Only audio stream, High res snapshot, Low res snapshot.                
+                High res stream, Low res stream, Only audio stream, High res snapshot, Low res snapshot.
                 <br />
             </p>
         </div>
@@ -169,18 +183,28 @@
                                     data-key="MQTT_ADV_LINK_CRONTAB" id="MQTT_ADV_LINK_CRONTAB" />
                                 <span class="switch-description">
                                     Insert here your scheduled process using crontab syntax.
-                                    <br />
-                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
-                                    : - _
                                 </span>
                             </td>
                         </tr>
                         <tr class="row">
                             <td>Suffix topic</td>
                             <td>
-                                <input class="u-full-width" type="text" placeholder="links" data-key="MQTT_ADV_LINK_TOPIC" />
+                                <input class="u-full-width" type="text" placeholder="links"
+                                    data-key="MQTT_ADV_LINK_TOPIC" />
                                 <span class="switch-description">
                                     MQTT Links Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Retain for MQTT Links</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="1"
+                                    data-key="MQTT_ADV_LINK_RETAIN" />
+                                <span class="switch-description">
+                                    A retained message is a normal MQTT message with the retained flag set to true. The
+                                    broker stores the last retained message and the corresponding QoS for that topic. (1
+                                    = enabled, 0 = disabled)
                                 </span>
                             </td>
                         </tr>
@@ -194,7 +218,7 @@
             <p>
                 Camera Settings Advertise contain the information of Camera Settings page:
                 <br />
-                Switch on/off camera, Sound Detection, Status Led, IR Led, Rotate.                
+                Switch on/off camera, Sound Detection, Status Led, IR Led, Rotate.
                 <br />
             </p>
         </div>
@@ -206,7 +230,8 @@
                             <td>Enabled</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_ENABLE" data-key="MQTT_ADV_CAMERA_SETTING_ENABLE" />
+                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_ENABLE"
+                                        data-key="MQTT_ADV_CAMERA_SETTING_ENABLE" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -219,7 +244,8 @@
                             <td>Start on Boot</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_BOOT" data-key="MQTT_ADV_CAMERA_SETTING_BOOT" />
+                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_BOOT"
+                                        data-key="MQTT_ADV_CAMERA_SETTING_BOOT" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -232,7 +258,8 @@
                             <td>Periodic Start</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_CRON" data-key="MQTT_ADV_CAMERA_SETTING_CRON" />
+                                    <input type="checkbox" id="MQTT_ADV_CAMERA_SETTING_CRON"
+                                        data-key="MQTT_ADV_CAMERA_SETTING_CRON" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -258,19 +285,28 @@
                                 <input class="u-full-width" type="text" placeholder="0 * * * *"
                                     data-key="MQTT_ADV_CAMERA_SETTING_CRONTAB" id="MQTT_ADV_CAMERA_SETTING_CRONTAB" />
                                 <span class="switch-description">
-                                    Insert here your scheduled process using crontab syntax.
-                                    <br />
-                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
-                                    : - _
-                                </span>
+                                    Insert here your scheduled process using crontab syntax. </span>
                             </td>
                         </tr>
                         <tr class="row">
                             <td>Suffix topic</td>
                             <td>
-                                <input class="u-full-width" type="text" placeholder="camera_setting" data-key="MQTT_ADV_CAMERA_SETTING_TOPIC" />
+                                <input class="u-full-width" type="text" placeholder="camera_setting"
+                                    data-key="MQTT_ADV_CAMERA_SETTING_TOPIC" />
                                 <span class="switch-description">
                                     MQTT Camera Settings Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Retain for Camera Settings</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="1"
+                                    data-key="MQTT_ADV_CAMERA_SETTING_RETAIN" />
+                                <span class="switch-description">
+                                    A retained message is a normal MQTT message with the retained flag set to true. The
+                                    broker stores the last retained message and the corresponding QoS for that topic. (1
+                                    = enabled, 0 = disabled)
                                 </span>
                             </td>
                         </tr>
@@ -284,7 +320,7 @@
             <p>
                 Telemetry Advertise contain the information of Telemetry page that change frequently:
                 <br />
-                Wlan Strenght, Uptime, FreeSD, Free Memory, Total Memory, Load Average.                
+                Wlan Strenght, Uptime, FreeSD, Free Memory, Total Memory, Load Average.
                 <br />
             </p>
         </div>
@@ -296,7 +332,8 @@
                             <td>Enabled</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_ENABLE" data-key="MQTT_ADV_TELEMETRY_ENABLE" />
+                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_ENABLE"
+                                        data-key="MQTT_ADV_TELEMETRY_ENABLE" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -309,7 +346,8 @@
                             <td>Start on Boot</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_BOOT" data-key="MQTT_ADV_TELEMETRY_BOOT" />
+                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_BOOT"
+                                        data-key="MQTT_ADV_TELEMETRY_BOOT" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -322,7 +360,8 @@
                             <td>Periodic Start</td>
                             <td>
                                 <label class="switch small">
-                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_CRON" data-key="MQTT_ADV_TELEMETRY_CRON" />
+                                    <input type="checkbox" id="MQTT_ADV_TELEMETRY_CRON"
+                                        data-key="MQTT_ADV_TELEMETRY_CRON" />
                                     <span class="slider round"></span>
                                     <span class="switch-text"></span>
                                 </label>
@@ -348,19 +387,28 @@
                                 <input class="u-full-width" type="text" placeholder="0 * * * *"
                                     data-key="MQTT_ADV_TELEMETRY_CRONTAB" id="MQTT_ADV_TELEMETRY_CRONTAB" />
                                 <span class="switch-description">
-                                    Insert here your scheduled process using crontab syntax.
-                                    <br />
-                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
-                                    : - _
-                                </span>
+                                    Insert here your scheduled process using crontab syntax. </span>
                             </td>
                         </tr>
                         <tr class="row">
                             <td>Suffix topic</td>
                             <td>
-                                <input class="u-full-width" type="text" placeholder="telemetry" data-key="MQTT_ADV_TELEMETRY_TOPIC" />
+                                <input class="u-full-width" type="text" placeholder="telemetry"
+                                    data-key="MQTT_ADV_TELEMETRY_TOPIC" />
                                 <span class="switch-description">
                                     MQTT Telemetry Advertise suffix topic
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Retain for Telemetry</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="1"
+                                    data-key="MQTT_ADV_TELEMETRY_RETAIN" />
+                                <span class="switch-description">
+                                    A retained message is a normal MQTT message with the retained flag set to true. The
+                                    broker stores the last retained message and the corresponding QoS for that topic. (1
+                                    = enabled, 0 = disabled)
                                 </span>
                             </td>
                         </tr>
@@ -444,11 +492,7 @@
                                 <input class="u-full-width" type="text" placeholder="*/10 * * * *"
                                     data-key="HOMEASSISTANT_CRONTAB" id="HOMEASSISTANT_CRONTAB" />
                                 <span class="switch-description">
-                                    Insert here your scheduled process using crontab syntax.
-                                    <br />
-                                    Allowed special chars: \ | ! &quot; $ % &amp; / ( ) &apos; ? ^ [ ] @ &lt; &gt; , ; .
-                                    : - _
-                                </span>
+                                    Insert here your scheduled process using crontab syntax. </span>
                             </td>
                         </tr>
                         <tr class="row">
@@ -498,6 +542,18 @@
                                     data-key="HOMEASSISTANT_MODEL" />
                                 <span class="switch-description">
                                     Unique name description of the model device
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>Retain</td>
+                            <td>
+                                <input class="u-full-width" type="text" placeholder="1"
+                                    data-key="HOMEASSISTANT_RETAIN" />
+                                <span class="switch-description">
+                                    A retained message is a normal MQTT message with the retained flag set to true. The
+                                    broker stores the last retained message and the corresponding QoS for that topic. (1
+                                    = enabled, 0 = disabled)
                                 </span>
                             </td>
                         </tr>

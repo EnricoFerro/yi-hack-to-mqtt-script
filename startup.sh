@@ -9,6 +9,8 @@ if [ ! -f $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE ]; then
     cp $TMP_SD_YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE
 fi
 
+$TMP_SD_YI_HACK_PREFIX/check_conf.sh
+
 ln -sf $TMP_SD_YI_HACK_PREFIX/www/pages/mqtt_adv.html $YI_HACK_PREFIX/www/pages/mqtt_adv.html
 ln -sf $TMP_SD_YI_HACK_PREFIX/www/js/modules/mqtt_adv.js $YI_HACK_PREFIX/www/js/mqtt_adv.js
 ln -sf $TMP_SD_YI_HACK_PREFIX/script/mqtt_advertise $YI_HACK_PREFIX/script/mqtt_advertise
