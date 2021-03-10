@@ -59,10 +59,10 @@ http://<YOU_CAM_IP>/index.html?page=mqtt_adv
 ## Remove 
 
 1. Delete all content in `/tmp/sd/yi-hack`
-2. Delete `/home/yi-hack/etc/mqtt_advertise.conf`
-3. Delete `/home/yi-hack/www/pages/mqtt_adv.html`
-4. Delete `/home/yi-hack/www/js/mqtt_adv.js`
-
+2. Delete file `/home/yi-hack/etc/mqtt_advertise.conf`
+3. Delete simbolic link `/home/yi-hack/www/pages/mqtt_adv.html`
+4. Delete simbolic link `/home/yi-hack/www/js/mqtt_adv.js`
+5. Delete simbolic link `/home/yi-hack/script/homeassistant`
 
 ## License
 
