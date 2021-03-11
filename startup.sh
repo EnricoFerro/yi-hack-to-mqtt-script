@@ -2,6 +2,8 @@
 
 YI_HACK_PREFIX="/home/yi-hack"
 TMP_SD_YI_HACK_PREFIX="/tmp/sd/yi-hack"
+PATH=$PATH:$YI_HACK_PREFIX/bin:$YI_HACK_PREFIX/usr/bin
+CONF_MQTT_ADVERTISE_FILE="etc/mqtt_advertise.conf"
 
 if [ ! -f $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE ]; then
     cp $TMP_SD_YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE $YI_HACK_PREFIX/$CONF_MQTT_ADVERTISE_FILE
@@ -9,8 +11,8 @@ fi
 
 ln -sf $TMP_SD_YI_HACK_PREFIX/www/pages/mqtt_adv.html $YI_HACK_PREFIX/www/pages/mqtt_adv.html
 ln -sf $TMP_SD_YI_HACK_PREFIX/www/js/modules/mqtt_adv.js $YI_HACK_PREFIX/www/js/mqtt_adv.js
-ln -sf $TMP_SD_YI_HACK_PREFIX/script/mqtt_advertise $YI_HACK_PREFIX/script/mqtt_advertise
+ln -sf $TMP_SD_YI_HACK_PREFIX/script/mqtt_advertise $YI_HACK_PREFIX/script/
 
-if [ -f "$YI_HACK_PREFIX/script/mqtt_advertise/startup.sh" ]; then   
-    $YI_HACK_PREFIX/script/mqtt_advertise/startup.sh                 
-fi                                             
+if [ -f "$YI_HACK_PREFIX/script/mqtt_advertise/startup.sh" ]; then
+    $YI_HACK_PREFIX/script/mqtt_advertise/startup.sh
+fi

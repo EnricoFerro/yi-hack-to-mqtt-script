@@ -35,13 +35,18 @@ fi
 MQTT_PREFIX=$(get_config MQTT_PREFIX)
 MQTT_ADV_LINK_TOPIC=$(get_mqtt_advertise_config MQTT_ADV_LINK_TOPIC)
 MQTT_ADV_LINK_RETAIN=$(get_mqtt_advertise_config MQTT_ADV_LINK_RETAIN)
+MQTT_ADV_LINK_QOS=$(get_mqtt_advertise_config MQTT_ADV_LINK_QOS)
 if [ "$MQTT_ADV_LINK_RETAIN" == "1" ]; then
     RETAIN="-r"
 else
     RETAIN=""
 fi
-
+if [ "$MQTT_ADV_LINK_QOS" == "0" ] || [ "$MQTT_ADV_LINK_QOS" == "1" ] || [ "$MQTT_ADV_LINK_QOS" == "2" ]; then
+    QOS="-q $MQTT_ADV_LINK_QOS"
+else
+    QOS=""
+fi
 TOPIC=$MQTT_PREFIX/$MQTT_ADV_LINK_TOPIC
 
 
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $RETAIN -h $HOST -t $TOPIC -m "$CONTENT"
+$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $QOS $RETAIN -h $HOST -t $TOPIC -m "$CONTENT"

@@ -48,10 +48,16 @@ fi
 MQTT_PREFIX=$(get_config MQTT_PREFIX)
 MQTT_ADV_INFO_GLOBAL_TOPIC=$(get_mqtt_advertise_config MQTT_ADV_INFO_GLOBAL_TOPIC)
 MQTT_ADV_INFO_GLOBAL_RETAIN=$(get_mqtt_advertise_config MQTT_ADV_INFO_GLOBAL_RETAIN)
+MQTT_ADV_INFO_GLOBAL_QOS=$(get_mqtt_advertise_config MQTT_ADV_INFO_GLOBAL_QOS)
 if [ "$MQTT_ADV_INFO_GLOBAL_RETAIN" == "1" ]; then
     RETAIN="-r"
 else
     RETAIN=""
+fi
+if [ "$MQTT_ADV_INFO_GLOBAL_QOS" == "0" ] || [ "$MQTT_ADV_INFO_GLOBAL_QOS" == "1" ] || [ "$MQTT_ADV_INFO_GLOBAL_QOS" == "2" ]; then
+    QOS="-q $MQTT_ADV_INFO_GLOBAL_QOS"
+else
+    QOS=""
 fi
 TOPIC=$MQTT_PREFIX/$MQTT_ADV_INFO_GLOBAL_TOPIC
 
@@ -68,4 +74,4 @@ CONTENT=$CONTENT'"gateway":"'$GATEWAY'",'
 CONTENT=$CONTENT'"mac_addr":"'$MAC_ADDR'",'
 CONTENT=$CONTENT'"wlan_essid":"'$WLAN_ESSID'"'
 CONTENT=$CONTENT" }"
-$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $RETAIN -h $HOST -t $TOPIC -m "$CONTENT"
+$YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $QOS $RETAIN -h $HOST -t $TOPIC -m "$CONTENT"
