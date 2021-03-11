@@ -76,7 +76,7 @@ if [ "$HOMEASSISTANT_RETAIN" == "1" ]; then
 else
     HA_RETAIN=""
 fi
-if [ "$HOMEASSISTANT_QOS" == "0" ] || [ "$HOMEASSISTANT_QOS" == "1"  ] || [ "$HOMEASSISTANT_QOS" == "2" ]; then
+if [ "$HOMEASSISTANT_QOS" == "0" ] || [ "$HOMEASSISTANT_QOS" == "1" ] || [ "$HOMEASSISTANT_QOS" == "2" ]; then
     HA_QOS="-q $HOMEASSISTANT_QOS"
 else
     HA_QOS=""
@@ -268,7 +268,7 @@ if [ "$MQTT_ADV_CAMERA_SETTING_ENABLE" == "yes" ]; then
     else
         RETAIN=""
     fi
-    if [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "0" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "1"  ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "2" ]; then
+    if [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "0" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "1" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "2" ]; then
         QOS='"qos":"$MQTT_ADV_CAMERA_SETTING_QOS", '
     else
         QOS=""

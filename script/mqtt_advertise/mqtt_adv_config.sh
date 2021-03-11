@@ -41,7 +41,7 @@ if [ "$MQTT_ADV_CAMERA_SETTING_RETAIN" == "1" ]; then
 else
     RETAIN=""
 fi
-if [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "0" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "1"  ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "2" ]; then
+if [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "0" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "1" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "2" ]; then
     QOS="-q $MQTT_ADV_CAMERA_SETTING_QOS"
 else
     QOS=""

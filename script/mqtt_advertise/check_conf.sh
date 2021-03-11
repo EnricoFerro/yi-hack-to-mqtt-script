@@ -3,7 +3,6 @@
 YI_HACK_PREFIX="/home/yi-hack"
 CONF_MQTT_ADVERTISE_FILE="$YI_HACK_PREFIX/etc/mqtt_advertise.conf"
 
-
 PARMS1="
 MQTT_ADV_LINK_ENABLE=no
 MQTT_ADV_LINK_BOOT=no
@@ -46,14 +45,12 @@ HOMEASSISTANT_RETAIN=1
 HOMEASSISTANT_QOS=0
 "
 
-for i in $PARMS1
-do
+for i in $PARMS1; do
     if [ ! -z "$i" ]; then
         PAR=$(echo "$i" | cut -d= -f1)
         MATCH=$(cat $CONF_MQTT_ADVERTISE_FILE | grep $PAR)
         if [ -z "$MATCH" ]; then
-            echo "$i" >> $CONF_MQTT_ADVERTISE_FILE
+            echo "$i" >>$CONF_MQTT_ADVERTISE_FILE
         fi
     fi
 done
-

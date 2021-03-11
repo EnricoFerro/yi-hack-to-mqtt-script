@@ -74,7 +74,7 @@ if [ "$HOMEASSISTANT_RETAIN" == "1" ]; then
 else
     HA_RETAIN=""
 fi
-if [ "$HOMEASSISTANT_QOS" == "0" ] || [ "$HOMEASSISTANT_QOS" == "1"  ] || [ "$HOMEASSISTANT_QOS" == "2" ]; then
+if [ "$HOMEASSISTANT_QOS" == "0" ] || [ "$HOMEASSISTANT_QOS" == "1" ] || [ "$HOMEASSISTANT_QOS" == "2" ]; then
     HA_QOS="-q $HOMEASSISTANT_QOS"
 else
     HA_QOS=""
@@ -151,7 +151,7 @@ if [ "$MQTT_ADV_INFO_GLOBAL_ENABLE" == "yes" ]; then
     TOPIC=$HOMEASSISTANT_MQTT_PREFIX/sensor/$IDENTIFIERS/serial_number/config
     CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "'$QOS'", "'$RETAIN'", "icon":"mdi:webcam","json_attributes_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_INFO_GLOBAL_TOPIC'","state_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_INFO_GLOBAL_TOPIC'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.serial_number }}"}'
     $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $HA_QOS $HA_RETAIN -h $HOST -t $TOPIC -m "$CONTENT"
-else 
+else
     for ITEM in hostname local_ip netmask gateway wlan_essid mac_addr home_version fw_version model_suffix serial_number; do
         TOPIC=$HOMEASSISTANT_MQTT_PREFIX/sensor/$IDENTIFIERS/$ITEM/config
         $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $HA_QOS $HA_RETAIN -h $HOST -t $TOPIC -n
@@ -204,7 +204,7 @@ if [ "$MQTT_ADV_TELEMETRY_ENABLE" == "yes" ]; then
     TOPIC=$HOMEASSISTANT_MQTT_PREFIX/sensor/$IDENTIFIERS/wlan_strength/config
     CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "'$QOS'", "'$RETAIN'", "device_class":"signal_strength","icon":"mdi:wifi","json_attributes_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_TELEMETRY_TOPIC'","state_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_TELEMETRY_TOPIC'","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ ((value_json.wlan_strength|int) * 100 / 70 )|int }}","unit_of_measurement":"%"}'
     $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $HA_QOS $HA_RETAIN -h $HOST -t $TOPIC -m "$CONTENT"
-else 
+else
     for ITEM in total_memory free_memory free_sd load_avg uptime wlan_strength; do
         TOPIC=$HOMEASSISTANT_MQTT_PREFIX/sensor/$IDENTIFIERS/$ITEM/config
         $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $HA_QOS $HA_RETAIN -h $HOST -t $TOPIC -n
@@ -254,7 +254,7 @@ if [ "$MQTT_ADV_CAMERA_SETTING_ENABLE" == "yes" ]; then
     else
         RETAIN=""
     fi
-    if [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "0" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "1"  ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "2" ]; then
+    if [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "0" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "1" ] || [ "$MQTT_ADV_CAMERA_SETTING_QOS" == "2" ]; then
         QOS='"qos":"$MQTT_ADV_CAMERA_SETTING_QOS", '
     else
         QOS=""
@@ -289,7 +289,7 @@ if [ "$MQTT_ADV_CAMERA_SETTING_ENABLE" == "yes" ]; then
     TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/ROTATE/config
     CONTENT='{"availability_topic":"'$MQTT_PREFIX'/'$TOPIC_BIRTH_WILL'","payload_available":"'$BIRTH_MSG'","payload_not_available":"'$WILL_MSG'","device":{"identifiers":["'$IDENTIFIERS'"],"manufacturer":"'$MANUFACTURER'","model":"'$MODEL'","name":"'$NAME'","sw_version":"'$SW_VERSION'"}, "'$QOS'", "'$RETAIN'", "icon":"mdi:monitor","json_attributes_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","state_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'","command_topic":"'$MQTT_PREFIX'/'$MQTT_ADV_CAMERA_SETTING_TOPIC'/ROTATE/set","name":"'$UNIQUE_NAME'","unique_id":"'$UNIQUE_ID'","value_template":"{{ value_json.ROTATE }}","payload_on":"yes","payload_off":"no"}'
     $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $HA_QOS $HA_RETAIN -h $HOST -t $TOPIC -m "$CONTENT"
-else 
+else
     for ITEM in SWITCH_ON SOUND_DETECTION BABY_CRYING_DETECT LED IR ROTATE; do
         TOPIC=$HOMEASSISTANT_MQTT_PREFIX/switch/$IDENTIFIERS/$ITEM/config
         $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $HA_QOS $HA_RETAIN -h $HOST -t $TOPIC -n

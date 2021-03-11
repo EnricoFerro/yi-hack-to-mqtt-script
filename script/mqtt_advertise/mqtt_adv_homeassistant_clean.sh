@@ -35,5 +35,4 @@ HOMEASSISTANT_MQTT_PREFIX=$(get_mqtt_advertise_config HOMEASSISTANT_MQTT_PREFIX)
 IDENTIFIERS=$(get_mqtt_advertise_config HOMEASSISTANT_IDENTIFIERS)
 TOPIC="$HOMEASSISTANT_MQTT_PREFIX/+/$IDENTIFIERS/#"
 
-
-$YI_HACK_PREFIX/bin/mosquitto_sub  -i $HOSTNAME -h  $HOST -t $TOPIC  -v --retained-only -W 1 | awk '{print $1;}' | while read line; do $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -h  $HOST -t $line -r -n; done;
+$YI_HACK_PREFIX/bin/mosquitto_sub -i $HOSTNAME -h $HOST -t $TOPIC -v --retained-only -W 1 | awk '{print $1;}' | while read line; do $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME -h $HOST -t $line -r -n; done
