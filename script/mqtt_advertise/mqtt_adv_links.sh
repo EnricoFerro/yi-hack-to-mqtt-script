@@ -48,5 +48,4 @@ else
 fi
 TOPIC=$MQTT_PREFIX/$MQTT_ADV_LINK_TOPIC
 
-
 $YI_HACK_PREFIX/bin/mosquitto_pub -i $HOSTNAME $QOS $RETAIN -h $HOST -t $TOPIC -m "$CONTENT"
